@@ -11,7 +11,8 @@ def validate_strings(string_array, expected_result):
 			print("For string " + string + " expected " + str(expected_result) + " but got " + str(result))
 
 ###
-# Second attempt, referring to Solution
+## Second attempt, referring to Solution
+# O(N)
 
 def unique_string(string):
 	# ASCII character set is only 128 characters large
@@ -32,6 +33,8 @@ print("Finished validating strings!")
 
 ###
 ## First attempt:
+# O(N^2)
+#
 # def unique_string(string):
 # 	for i in range(0, len(string)):
 # 		base_char = string[i]

@@ -1,14 +1,7 @@
 # Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
 # Hints: #44, #117, #132
 
-unique_strings = [ 'abc', 'ABC', 'abA', 'abAB', '123', '1a2b', 'abcdefg' ]
-non_unique_strings = [ 'aba', 'ABA', 'abab', '1212', 'abcdefga' ]
-
-def validate_strings(string_array, expected_result):
-	for string in string_array:
-		result = unique_string(string)
-		if result != expected_result:
-			print("For string " + string + " expected " + str(expected_result) + " but got " + str(result))
+import unittest
 
 ###
 ## Second attempt, referring to Solution
@@ -26,11 +19,6 @@ def unique_string(string):
 		char_set[index_char] = True
 	return True
 
-validate_strings(unique_strings, True)
-validate_strings(non_unique_strings, False)
-
-print("Finished validating strings!")
-
 ###
 ## First attempt:
 # O(N^2)
@@ -42,3 +30,28 @@ print("Finished validating strings!")
 # 			if base_char == string[j]:
 # 				return False
 # 	return True
+
+class Test(unittest.TestCase):
+	'''Test Cases'''
+	data = [
+		['abc', True],
+		['ABC', True],
+		['abA', True],
+		['abAB', True],
+		['123', True],
+		['1a2b', True],
+		['abcdefg', True],
+		['aba', False],
+		['ABA', False],
+		['abab', False],
+		['1212', False],
+		['abcdefga', False]
+	]
+	
+	def test_unique_strings(self):
+		for [string, expected] in self.data:
+			result = unique_string(string)
+			self.assertEqual(result, expected)
+
+if __name__ == "__main__":
+	unittest.main()	

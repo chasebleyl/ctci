@@ -2,15 +2,7 @@
 # Hints: #1, #84, #122, #131
 
 from collections import Counter
-
-valid_permutations = [ ['abc', 'bac'], ['bbb', 'bbb'], ['12345', '54321'] ]
-invalid_permutations = [ ['abc', 'ab'], ['cde', 'bcd'], ['12345', 'abcde'] ]
-
-def validate_permutations(permutations, expected_result):
-	for permutation in permutations:
-		result = check_permutation(permutation[0], permutation[1])
-		if result != expected_result:
-			print("For strings " + str(permutation[0]) + " and " + str(permutation[1])  + " expected " + str(expected_result) + " but got " + str(result))
+import unittest
 
 ###
 # Second Attempt (with help from solution): No external packages required
@@ -53,9 +45,22 @@ def check_permutation(string_one, string_two):
 # 	if sorted_one != sorted_two:
 # 		return False
 # 	return True
-	
-validate_permutations(valid_permutations, True)
-validate_permutations(invalid_permutations, False)
 
-print("Finished validating permutations!")
+class Test(unittest.TestCase):
+	'''Test Cases'''
+	data = [
+		['abc', 'bac', True],
+		['bbb', 'bbb', True],
+		['12345', '54321', True],
+		['abc', 'ab', False],
+		['cde', 'bcd', False],
+		['12345', 'abcde', False]
+	]
 	
+	def test_permutations(self):
+		for [string_one, string_two, expected] in self.data:
+			result = check_permutation(string_one, string_two)
+			self.assertEqual(result, expected)
+
+if __name__ == "__main__":
+	unittest.main()	
